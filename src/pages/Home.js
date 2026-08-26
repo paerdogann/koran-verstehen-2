@@ -63,7 +63,9 @@ export default function Home() {
         overflow: 'hidden',
         padding: '90px 60px 100px',
         display: 'flex', alignItems: 'center', gap: 60, flexWrap: 'wrap',
-        background: 'radial-gradient(circle at 75% 30%, #4a63a3 0%, #354f88 35%, #12193a 100%)',
+        backgroundImage: 'linear-gradient(120deg, rgba(18,25,58,0.62) 0%, rgba(53,79,136,0.48) 45%, rgba(18,25,58,0.32) 100%), url(/hero-bg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}>
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 520, flex: 1, minWidth: 320 }}>
           <h1 style={{ fontFamily: "'Work Sans', sans-serif", fontSize: 52, lineHeight: 1.1, margin: '0 0 22px' }}>
@@ -83,14 +85,6 @@ export default function Home() {
               Alle Themen ansehen
             </button>
           </div>
-        </div>
-        <div style={{ position: 'relative', zIndex: 2, flex: 1, minWidth: 280, display: 'flex', justifyContent: 'center' }}>
-          <div style={{
-            width: '100%', maxWidth: 380, aspectRatio: '1/1', borderRadius: 24,
-            background: 'linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02))',
-            border: '1px solid rgba(255,255,255,0.15)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 110,
-          }}>📖</div>
         </div>
       </div>
 
