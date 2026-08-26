@@ -1,0 +1,36 @@
+name: Build and Deploy to all-inkl.com
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu indir
+        uses: actions/checkout@v4
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Bağımlılıkları yükle
+        run: npm ci
+
+      - name: Production build al
+        run: npm run build
+        env:
+          DISABLE_ESLINT_PLUGIN: true
+
+      - name: FTP ile all-inkl.com'a yükle
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./build/
+          server-dir: koranverstehen.de/
+          protocol: ftp
