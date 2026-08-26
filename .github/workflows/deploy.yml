@@ -25,6 +25,16 @@ jobs:
         env:
           DISABLE_ESLINT_PLUGIN: true
 
+      - name: (GEÇİCİ) Secret uzunluklarını kontrol et
+        run: |
+          echo "FTP_SERVER uzunluğu: ${#FTP_SERVER}"
+          echo "FTP_USERNAME uzunluğu: ${#FTP_USERNAME}"
+          echo "FTP_PASSWORD uzunluğu: ${#FTP_PASSWORD}"
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+
       - name: FTP ile all-inkl.com'a yükle
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
