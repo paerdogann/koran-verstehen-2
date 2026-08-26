@@ -67,15 +67,15 @@ export default function Home() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 520, flex: 1, minWidth: 320 }}>
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
           <h1 style={{ fontFamily: "'Work Sans', sans-serif", fontSize: 52, lineHeight: 1.1, margin: '0 0 22px' }}>
             <span style={{ color: '#e79209', fontWeight: 500, display: 'block' }}>Koran verstehen</span>
             <span style={{ color: '#fff', fontWeight: 800, display: 'block' }}>leicht gemacht</span>
           </h1>
-          <p style={{ fontFamily: "'Work Sans', sans-serif", color: 'rgba(255,255,255,0.8)', fontSize: 16, lineHeight: 1.65, marginBottom: 30, maxWidth: 440 }}>
+          <p style={{ fontFamily: "'Work Sans', sans-serif", color: 'rgba(255,255,255,0.8)', fontSize: 16, lineHeight: 1.65, marginBottom: 30, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto' }}>
             Entdecke den Koran auf eine Art, die zu dir passt — klar, zugänglich und ohne Vorwissen. Fünf Themenbereiche, unzählige Beiträge.
           </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button onClick={scrollToThemen}
               style={{ fontFamily: "'Work Sans', sans-serif", padding: '14px 26px', borderRadius: 8, fontSize: 15, fontWeight: 600, border: '1.5px solid #e79209', color: '#e79209', background: 'transparent', cursor: 'pointer' }}>
               Jetzt entdecken →
