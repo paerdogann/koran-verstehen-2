@@ -10,6 +10,8 @@ import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import BeitragPage from './pages/BeitragPage';
 import CategoryPage from './pages/CategoryPage';
+import Impressum from './pages/Impressum';
+import Datenschutz from './pages/Datenschutz';
 export default function App() {
   return (
     <AuthProvider>
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="/beitrag/:id" element={<BeitragPage />} />
           <Route path="/profil" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
