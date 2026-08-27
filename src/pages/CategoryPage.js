@@ -82,22 +82,31 @@ export default function CategoryPage() {
         {boxes.length === 0 ? (
           <p style={{ textAlign: 'center', color: '#999' }}>Noch keine Beiträge in dieser Kategorie.</p>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 26 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
             {boxes.map((box) => (
               <div key={box.id} onClick={() => navigate(`/beitrag/${box.id}`)}
-                style={{
-                  position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '4/5', cursor: 'pointer',
+                style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', cursor: 'pointer', boxShadow: '0 4px 18px rgba(18,25,58,0.08)', transition: 'transform .15s ease, box-shadow .15s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(18,25,58,0.14)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(18,25,58,0.08)'; }}>
+                <div style={{
+                  height: 190, position: 'relative',
                   backgroundImage: box.image_url ? `url(${box.image_url})` : 'none',
                   backgroundSize: 'cover', backgroundPosition: 'center',
                   backgroundColor: '#2b3a63',
                 }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(18,25,58,0.92) 0%, rgba(18,25,58,0.35) 45%, rgba(18,25,58,0.05) 70%)' }} />
-                <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 2, width: 38, height: 38, borderRadius: 10, border: '1.5px solid rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 16, background: 'rgba(255,255,255,0.08)' }}>
-                  🖼️
+                  <span style={{ position: 'absolute', top: 14, left: 14, background: '#e79209', color: '#fff', fontSize: 11, fontWeight: 700, padding: '5px 12px', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '.03em' }}>
+                    {category.name}
+                  </span>
                 </div>
-                <div style={{ position: 'absolute', left: 20, right: 20, bottom: 20, zIndex: 2 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#e79209', marginBottom: 8 }}>{formatDate(box.created_at)}</div>
-                  <div style={{ fontSize: 23, fontWeight: 700, color: '#fff', lineHeight: 1.25 }}>{box.title || '(başlıksız)'}</div>
+                <div style={{ padding: '22px 22px 24px' }}>
+                  <div style={{ fontSize: 12, color: '#999', marginBottom: 8 }}>{formatDate(box.created_at)}</div>
+                  <div style={{ fontSize: 19, fontWeight: 700, color: '#354f88', marginBottom: 10, lineHeight: 1.3 }}>{box.title || '(başlıksız)'}</div>
+                  <p style={{ fontSize: 14, color: '#777', lineHeight: 1.6, marginBottom: 18 }}>
+                    {(box.short_desc || '').slice(0, 90)}{box.short_desc && box.short_desc.length > 90 ? '…' : ''}
+                  </p>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13.5, fontWeight: 700, color: '#354f88', border: '1.5px solid #354f88', borderRadius: 8, padding: '9px 18px' }}>
+                    Mehr erfahren →
+                  </span>
                 </div>
               </div>
             ))}
