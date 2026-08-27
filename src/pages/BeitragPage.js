@@ -56,13 +56,18 @@ export default function BeitragPage() {
     <div style={{ fontFamily: "'Work Sans', sans-serif", color: '#333', maxWidth: 760, margin: '0 auto', padding: '48px 24px 90px' }}>
       <Link to="/#alle-themen" style={{ color: '#354f88', fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>← Zurück zur Übersicht</Link>
 
+      {/* Görsel */}
+      {box.image_url && (
+        <div style={{ marginTop: 22, height: 320, borderRadius: 20, overflow: 'hidden', backgroundImage: `url(${box.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      )}
+
       {/* Etiketler */}
       <div style={{ display: 'flex', gap: 8, margin: '22px 0 14px' }}>
-        <span style={{ fontSize: 12, fontWeight: 700, color: '#e79209', border: '1px solid #e79209', borderRadius: 20, padding: '4px 12px' }}>
+        <span style={{ fontSize: 12, fontWeight: 700, color: '#999' }}>
           {formatDate(box.created_at)}
         </span>
         {categoryName && (
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#354f88', border: '1px solid #354f88', borderRadius: 20, padding: '4px 12px' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, color: '#fff', background: '#e79209', borderRadius: 20, padding: '4px 12px', textTransform: 'uppercase', letterSpacing: '.03em' }}>
             {categoryName}
           </span>
         )}
