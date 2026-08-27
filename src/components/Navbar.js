@@ -40,8 +40,8 @@ export default function Navbar() {
           </span>
           {themenOpen && (
             <div style={{ position: 'absolute', top: 34, left: '50%', transform: 'translateX(-50%)', background: 'white', border: '1px solid #eee', borderRadius: 14, boxShadow: '0 12px 28px rgba(53,79,136,.15)', padding: 10, minWidth: 200, zIndex: 200 }}>
-              {categories.map((cat) => (
-                <div key={cat} onClick={() => setThemenOpen(false)}
+              {categories.map((cat, i) => (
+                <div key={cat} onClick={() => { setThemenOpen(false); navigate(`/themen/${i}`); }}
                   style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', borderRadius: 9, cursor: 'pointer', fontSize: '0.95rem', color: '#354f88' }}
                   onMouseEnter={e => e.currentTarget.style.background = '#f7f7f4'}
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
