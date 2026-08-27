@@ -85,22 +85,20 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Büyük görsel + yüzen rozetler */}
-        <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 820, margin: '0 auto' }}>
-          <div style={{ position: 'absolute', inset: -14, borderRadius: 32, border: '1.5px solid rgba(231,146,9,0.4)' }} />
+        {/* Vollbild-Bild (randlos) + schwebende Badges */}
+        <div style={{ position: 'relative', zIndex: 2, width: 'calc(100% + 80px)', margin: '0 -40px' }}>
           <div style={{
-            width: '100%', aspectRatio: '16/8', borderRadius: 24, overflow: 'hidden',
+            width: '100%', aspectRatio: '16/7',
             backgroundImage: 'url(/hero-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%',
-            border: '6px solid rgba(255,255,255,0.12)', boxShadow: '0 20px 50px rgba(0,0,0,0.35)',
           }} />
-          <div style={{ position: 'absolute', top: -24, left: 24, background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 10px 28px rgba(18,25,58,0.25)', display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', fontFamily: "'Work Sans', sans-serif" }}>
+          <div style={{ position: 'absolute', bottom: 24, left: 40, background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 10px 28px rgba(18,25,58,0.25)', display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', fontFamily: "'Work Sans', sans-serif" }}>
             <div style={{ width: 34, height: 34, borderRadius: 10, background: '#354f88', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 16, flexShrink: 0 }}>📚</div>
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#354f88' }}>5 Themen</div>
               <div style={{ fontSize: 11, color: '#888' }}>Gott, Mensch, u.v.m.</div>
             </div>
           </div>
-          <div style={{ position: 'absolute', bottom: -24, right: 24, background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 10px 28px rgba(18,25,58,0.25)', display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', fontFamily: "'Work Sans', sans-serif" }}>
+          <div style={{ position: 'absolute', bottom: 24, right: 40, background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 10px 28px rgba(18,25,58,0.25)', display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', fontFamily: "'Work Sans', sans-serif" }}>
             <div style={{ width: 34, height: 34, borderRadius: 10, background: '#354f88', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 16, flexShrink: 0 }}>✨</div>
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#354f88' }}>Neue Beiträge</div>
@@ -139,7 +137,7 @@ export default function Home() {
       </div>
 
       {/* ---------- Alle Themen — yeni kart tasarımı ---------- */}
-      <div ref={themenRef} id="alle-themen" style={{ maxWidth: 1080, margin: '0 auto', padding: '70px 24px 90px', fontFamily: "'Work Sans', sans-serif" }}>
+      <div ref={themenRef} id="alle-themen" style={{ maxWidth: 1200, margin: '0 auto', padding: '70px 40px 90px', fontFamily: "'Work Sans', sans-serif" }}>
         <div style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto 44px' }}>
           <h2 style={{ color: '#354f88', fontSize: 34, margin: '0 0 14px', fontWeight: 800 }}>Alle Themen</h2>
           <p style={{ color: '#777', fontSize: 15, lineHeight: 1.7 }}>Durchstöbere alle Beiträge — sortiert nach den neuesten Einträgen, gefiltert nach deinem Interesse.</p>
@@ -161,14 +159,14 @@ export default function Home() {
         {boxesLoading ? (
           <p style={{ textAlign: 'center', color: '#999' }}>Laden...</p>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 22 }}>
             {boxes.map((box) => (
               <div key={box.id} onClick={() => handleBoxClick(box)}
                 style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', cursor: 'pointer', boxShadow: '0 4px 18px rgba(18,25,58,0.08)', transition: 'transform .15s ease, box-shadow .15s ease' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(18,25,58,0.14)'; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(18,25,58,0.08)'; }}>
                 <div style={{
-                  height: 190, position: 'relative',
+                  aspectRatio: '1/1', position: 'relative',
                   backgroundImage: box.image_url ? `url(${box.image_url})` : 'none',
                   backgroundSize: 'cover', backgroundPosition: 'center',
                   backgroundColor: '#2b3a63',
@@ -177,13 +175,13 @@ export default function Home() {
                     {categoryName(box.category_index)}
                   </span>
                 </div>
-                <div style={{ padding: '22px 22px 24px' }}>
+                <div style={{ padding: '18px 18px 20px' }}>
                   <div style={{ fontSize: 12, color: '#999', marginBottom: 8 }}>{formatDate(box.created_at)}</div>
-                  <div style={{ fontSize: 19, fontWeight: 700, color: '#354f88', marginBottom: 10, lineHeight: 1.3 }}>{box.title || '(başlıksız)'}</div>
-                  <p style={{ fontSize: 14, color: '#777', lineHeight: 1.6, marginBottom: 18 }}>
-                    {(box.short_desc || '').slice(0, 90)}{box.short_desc && box.short_desc.length > 90 ? '…' : ''}
+                  <div style={{ fontSize: 17, fontWeight: 700, color: '#354f88', marginBottom: 10, lineHeight: 1.3 }}>{box.title || '(başlıksız)'}</div>
+                  <p style={{ fontSize: 13, color: '#777', lineHeight: 1.55, marginBottom: 16 }}>
+                    {(box.short_desc || '').slice(0, 65)}{box.short_desc && box.short_desc.length > 65 ? '…' : ''}
                   </p>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13.5, fontWeight: 700, color: '#354f88', border: '1.5px solid #354f88', borderRadius: 8, padding: '9px 18px' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12.5, fontWeight: 700, color: '#354f88', border: '1.5px solid #354f88', borderRadius: 8, padding: '8px 14px' }}>
                     Mehr erfahren →
                   </span>
                 </div>
