@@ -105,16 +105,16 @@ export default function CategoryPage() {
 
           {/* Weitere Beiträge */}
           {rest.length > 0 && (
-            <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 24px 90px' }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 40px 90px' }}>
               <div style={{ color: '#354f88', fontSize: 22, fontWeight: 800, marginBottom: 24 }}>Weitere Beiträge</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 22 }}>
                 {rest.map((box) => (
                   <div key={box.id} onClick={() => navigate(`/beitrag/${box.id}`)}
                     style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', cursor: 'pointer', boxShadow: '0 4px 18px rgba(18,25,58,0.08)', transition: 'transform .15s ease, box-shadow .15s ease' }}
                     onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(18,25,58,0.14)'; }}
                     onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(18,25,58,0.08)'; }}>
                     <div style={{
-                      height: 170, position: 'relative',
+                      aspectRatio: '1/1', position: 'relative',
                       backgroundImage: box.image_url ? `url(${box.image_url})` : 'none',
                       backgroundSize: 'cover', backgroundPosition: 'center',
                       backgroundColor: '#2b3a63',
@@ -123,13 +123,13 @@ export default function CategoryPage() {
                         {category.name}
                       </span>
                     </div>
-                    <div style={{ padding: 20 }}>
+                    <div style={{ padding: 18 }}>
                       <div style={{ fontSize: 12, color: '#999', marginBottom: 8 }}>{formatDate(box.created_at)}</div>
-                      <div style={{ fontSize: 17, fontWeight: 700, color: '#354f88', marginBottom: 8, lineHeight: 1.3 }}>{box.title || '(başlıksız)'}</div>
-                      <p style={{ fontSize: 13.5, color: '#777', lineHeight: 1.6, marginBottom: 16 }}>
-                        {(box.short_desc || '').slice(0, 80)}{box.short_desc && box.short_desc.length > 80 ? '…' : ''}
+                      <div style={{ fontSize: 16, fontWeight: 700, color: '#354f88', marginBottom: 8, lineHeight: 1.3 }}>{box.title || '(başlıksız)'}</div>
+                      <p style={{ fontSize: 13, color: '#777', lineHeight: 1.55, marginBottom: 14 }}>
+                        {(box.short_desc || '').slice(0, 60)}{box.short_desc && box.short_desc.length > 60 ? '…' : ''}
                       </p>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 700, color: '#354f88', border: '1.5px solid #354f88', borderRadius: 8, padding: '8px 16px' }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12.5, fontWeight: 700, color: '#354f88', border: '1.5px solid #354f88', borderRadius: 8, padding: '8px 14px' }}>
                         Mehr erfahren →
                       </span>
                     </div>
