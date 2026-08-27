@@ -61,13 +61,11 @@ export default function Home() {
       <div style={{
         position: 'relative',
         overflow: 'hidden',
-        padding: '90px 60px 100px',
-        display: 'flex', alignItems: 'center', gap: 60, flexWrap: 'wrap',
-        backgroundImage: 'linear-gradient(120deg, rgba(18,25,58,0.62) 0%, rgba(53,79,136,0.48) 45%, rgba(18,25,58,0.32) 100%), url(/hero-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        padding: '80px 40px 0',
+        textAlign: 'center',
+        background: 'radial-gradient(circle at 50% 0%, #4a63a3 0%, #354f88 45%, #12193a 100%)',
       }}>
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 640, margin: '0 auto' }}>
           <h1 style={{ fontFamily: "'Work Sans', sans-serif", fontSize: 52, lineHeight: 1.1, margin: '0 0 22px' }}>
             <span style={{ color: '#e79209', fontWeight: 500, display: 'block' }}>Koran verstehen</span>
             <span style={{ color: '#fff', fontWeight: 800, display: 'block' }}>leicht gemacht</span>
@@ -75,7 +73,7 @@ export default function Home() {
           <p style={{ fontFamily: "'Work Sans', sans-serif", color: 'rgba(255,255,255,0.8)', fontSize: 16, lineHeight: 1.65, marginBottom: 30, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto' }}>
             Entdecke den Koran auf eine Art, die zu dir passt — klar, zugänglich und ohne Vorwissen. Fünf Themenbereiche, unzählige Beiträge.
           </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 56 }}>
             <button onClick={scrollToThemen}
               style={{ fontFamily: "'Work Sans', sans-serif", padding: '14px 26px', borderRadius: 8, fontSize: 15, fontWeight: 600, border: '1.5px solid #e79209', color: '#e79209', background: 'transparent', cursor: 'pointer' }}>
               Jetzt entdecken →
@@ -86,6 +84,31 @@ export default function Home() {
             </button>
           </div>
         </div>
+
+        {/* Büyük görsel + yüzen rozetler */}
+        <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 820, margin: '0 auto' }}>
+          <div style={{ position: 'absolute', inset: -14, borderRadius: 32, border: '1.5px solid rgba(231,146,9,0.4)' }} />
+          <div style={{
+            width: '100%', aspectRatio: '16/8', borderRadius: 24, overflow: 'hidden',
+            backgroundImage: 'url(/hero-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%',
+            border: '6px solid rgba(255,255,255,0.12)', boxShadow: '0 20px 50px rgba(0,0,0,0.35)',
+          }} />
+          <div style={{ position: 'absolute', top: -24, left: 24, background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 10px 28px rgba(18,25,58,0.25)', display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', fontFamily: "'Work Sans', sans-serif" }}>
+            <div style={{ width: 34, height: 34, borderRadius: 10, background: '#354f88', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 16, flexShrink: 0 }}>📚</div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#354f88' }}>5 Themen</div>
+              <div style={{ fontSize: 11, color: '#888' }}>Gott, Mensch, u.v.m.</div>
+            </div>
+          </div>
+          <div style={{ position: 'absolute', bottom: -24, right: 24, background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 10px 28px rgba(18,25,58,0.25)', display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', fontFamily: "'Work Sans', sans-serif" }}>
+            <div style={{ width: 34, height: 34, borderRadius: 10, background: '#354f88', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 16, flexShrink: 0 }}>✨</div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#354f88' }}>Neue Beiträge</div>
+              <div style={{ fontSize: 11, color: '#888' }}>jede Woche</div>
+            </div>
+          </div>
+        </div>
+        <div style={{ height: 70 }} />
       </div>
 
       {/* ---------- Wer sind wir (değişmedi) ---------- */}
@@ -138,22 +161,31 @@ export default function Home() {
         {boxesLoading ? (
           <p style={{ textAlign: 'center', color: '#999' }}>Laden...</p>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 26 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
             {boxes.map((box) => (
               <div key={box.id} onClick={() => handleBoxClick(box)}
-                style={{
-                  position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '4/5', cursor: 'pointer',
+                style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', cursor: 'pointer', boxShadow: '0 4px 18px rgba(18,25,58,0.08)', transition: 'transform .15s ease, box-shadow .15s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(18,25,58,0.14)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(18,25,58,0.08)'; }}>
+                <div style={{
+                  height: 190, position: 'relative',
                   backgroundImage: box.image_url ? `url(${box.image_url})` : 'none',
                   backgroundSize: 'cover', backgroundPosition: 'center',
                   backgroundColor: '#2b3a63',
                 }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(18,25,58,0.92) 0%, rgba(18,25,58,0.35) 45%, rgba(18,25,58,0.05) 70%)' }} />
-                <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 2, width: 38, height: 38, borderRadius: 10, border: '1.5px solid rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 16, background: 'rgba(255,255,255,0.08)' }}>
-                  🖼️
+                  <span style={{ position: 'absolute', top: 14, left: 14, background: '#e79209', color: '#fff', fontSize: 11, fontWeight: 700, padding: '5px 12px', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '.03em' }}>
+                    {categoryName(box.category_index)}
+                  </span>
                 </div>
-                <div style={{ position: 'absolute', left: 20, right: 20, bottom: 20, zIndex: 2 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#e79209', marginBottom: 8 }}>{formatDate(box.created_at)} · {categoryName(box.category_index)}</div>
-                  <div style={{ fontSize: 23, fontWeight: 700, color: '#fff', lineHeight: 1.25 }}>{box.title || '(başlıksız)'}</div>
+                <div style={{ padding: '22px 22px 24px' }}>
+                  <div style={{ fontSize: 12, color: '#999', marginBottom: 8 }}>{formatDate(box.created_at)}</div>
+                  <div style={{ fontSize: 19, fontWeight: 700, color: '#354f88', marginBottom: 10, lineHeight: 1.3 }}>{box.title || '(başlıksız)'}</div>
+                  <p style={{ fontSize: 14, color: '#777', lineHeight: 1.6, marginBottom: 18 }}>
+                    {(box.short_desc || '').slice(0, 90)}{box.short_desc && box.short_desc.length > 90 ? '…' : ''}
+                  </p>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13.5, fontWeight: 700, color: '#354f88', border: '1.5px solid #354f88', borderRadius: 8, padding: '9px 18px' }}>
+                    Mehr erfahren →
+                  </span>
                 </div>
               </div>
             ))}
